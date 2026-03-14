@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — 4L Tags</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* ── Checkout page layout ── */
+  .checkout-shell {
+    width: min(calc(100% - 48px), 1200px);
+    margin: 0 auto;
+    padding: 40px 0 100px;
+  }
+
+  .checkout-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .checkout-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin: 0 0 10px;
+    background: linear-gradient(90deg, #00d4ff, #4f7cff, #00d4ff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s linear infinite;
+  }
+
+  .checkout-header p {
+    color: var(--muted);
+    font-size: 16px;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 32px;
+    transition: opacity 180ms;
+  }
+
+  .back-link:hover { opacity: 0.75; }
+
+  .checkout-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ── Panels — reuse existing stat-card/info-card aesthetics ── */
+  .checkout-panel {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    box-shadow: var(--shadow-md);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+  }
+
+  .checkout-panel::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.38), transparent);
+  }
+
+  .panel-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin: 0 0 28px;
+  }
+
+  /* ── Order summary table ── */
+  .order-table {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: rgba(0, 0, 0, 0.25);
+    margin-bottom: 24px;
+  }
+
+  .order-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 15px;
+  }
+
+  .order-row:last-child { border-bottom: none; }
+
+  .order-row .label { color: var(--muted); }
+
+  .order-row .value {
+    font-weight: 600;
+    color: #ffffff;
+  }
+
+  .order-row.total-row {
+    background: rgba(0, 212, 255, 0.04);
+    border-top: 1px solid rgba(0, 212, 255, 0.12);
+  }
+
+  .order-row.total-row .label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+  }
+
+  .order-row.total-row .value {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  }
+
+  .order-tag-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    background: rgba(0, 212, 255, 0.08);
+    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .trust-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 0;
+    padding: 14px 0 0;
+  }
+
+  .trust-strip span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .trust-strip span::before {
+    content: "✓";
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* ── Form inputs ── */
+  .form-group {
+    margin-bottom: 22px;
+  }
+
+  .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .form-label span {
+    color: var(--accent);
+    margin-left: 2px;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
+    font-size: 15px;
+    font-family: var(--font-main);
+    outline: none;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    box-sizing: border-box;
+  }
+
+  .form-input::placeholder { color: var(--muted-2); }
+
+  .form-input:focus {
+    border-color: rgba(0, 212, 255, 0.42);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08), 0 0 26px rgba(0, 212, 255, 0.08);
+  }
+
+  .form-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 14px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    color: var(--text);
+    font-size: 15px;
+    font-family: var(--font-main);
+    outline: none;
+    resize: vertical;
+    transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+    box-sizing: border-box;
+  }
+
+  .form-textarea::placeholder { color: var(--muted-2); }
+
+  .form-textarea:focus {
+    border-color: rgba(0, 212, 255, 0.42);
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.08), 0 0 26px rgba(0, 212, 255, 0.08);
+  }
+
+  /* ── Payment method selector ── */
+  .payment-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 0;
+  }
+
+  .payment-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 18px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-md);
+    background: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 180ms ease, background 180ms ease, color 180ms ease, box-shadow 180ms ease;
+    user-select: none;
+  }
+
+  .payment-option:hover {
+    border-color: rgba(0, 212, 255, 0.3);
+    color: #ffffff;
+    background: rgba(0, 212, 255, 0.04);
+  }
+
+  .payment-option.active {
+    border-color: var(--accent);
+    background: rgba(0, 212, 255, 0.1);
+    color: var(--accent);
+    box-shadow: 0 0 18px rgba(0, 212, 255, 0.18);
+  }
+
+  .payment-icon {
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  .payment-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  /* ── Complete Order button ── */
+  .complete-btn {
+    width: 100%;
+    min-height: 58px;
+    margin-top: 28px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #10d7ee, #19c7f4 35%, #33a6ff 100%);
+    color: #031018;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: var(--font-main);
+    cursor: pointer;
+    box-shadow: 0 0 24px rgba(0, 212, 255, 0.32), 0 14px 34px rgba(0, 0, 0, 0.2);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+    letter-spacing: -0.01em;
+  }
+
+  .complete-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.52);
+  }
+
+  .complete-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .tos-line {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted-2);
+    margin-top: 16px;
+    line-height: 1.6;
+  }
+
+  .tos-line a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── No cart fallback ── */
+  .no-cart {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--muted);
+  }
+
+  .no-cart .big { font-size: 72px; color: rgba(255,255,255,0.06); font-weight: 900; }
+  .no-cart p { margin: 16px 0; }
+  .no-cart a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 28px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #10d7ee, #33a6ff);
+    color: #031018;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 8px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 800px) {
+    .checkout-grid { grid-template-columns: 1fr; }
+    .checkout-shell { padding: 24px 0 80px; }
+  }
+</style>
+</head>
+<body class="tag-page">
+
+<nav class="site-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="4L Tags Home">
+      <span class="nav-brand-mark"></span>
+      <span class="nav-brand-text">4L TAGS</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a class="nav-link" href="index.html">Home</a>
+      <div class="nav-item">
+        <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+          Products <span class="nav-caret"></span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="index.html#gridContainer">Marketplace</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+          Documentation <span class="nav-caret"></span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="index.html#faq-anchor">FAQ</a>
+          <a href="index.html#how-it-works">Swap Process</a>
+        </div>
+      </div>
+      <a class="nav-cta" href="https://discord.com/users/820729520754524161" target="_blank" rel="noopener noreferrer">Community</a>
+    </div>
+  </div>
+</nav>
+
+<div id="cursor-light" aria-hidden="true"></div>
+
+<main class="checkout-shell" id="checkoutShell">
+  <!-- Populated by JS -->
+</main>
+
+<script>
+// ── Nav behaviour (shared across all pages) ──
+const nav = document.querySelector('.site-nav');
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+const navItems = document.querySelectorAll('.nav-item');
+const cursorLight = document.getElementById('cursor-light');
+
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+}
+
+navItems.forEach(item => {
+  const trigger = item.querySelector('.nav-link-button');
+  if (!trigger) return;
+  trigger.addEventListener('click', () => {
+    if (window.innerWidth > 900) return;
+    const isOpen = item.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+  });
+});
+
+document.addEventListener('click', event => {
+  if (!nav || nav.contains(event.target)) return;
+  navMenu?.classList.remove('open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+  navItems.forEach(item => {
+    item.classList.remove('open');
+    item.querySelector('.nav-link-button')?.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('mousemove', event => {
+  if (!cursorLight) return;
+  cursorLight.style.left = event.clientX + 'px';
+  cursorLight.style.top = event.clientY + 'px';
+});
+
+// ── Checkout logic ──
+const shell = document.getElementById('checkoutShell');
+
+const cartRaw = localStorage.getItem('cart');
+if (!cartRaw) {
+  shell.innerHTML = `
+    <div class="no-cart">
+      <div class="big">🛒</div>
+      <p>Your cart is empty.</p>
+      <a href="index.html">← Back to Marketplace</a>
+    </div>`;
+} else {
+  const cart = JSON.parse(cartRaw);
+  const tag   = cart.tag   || '';
+  const price = parseFloat(cart.price) || 0;
+
+  const taxRate  = 0.08;
+  const subtotal = price;
+  const tax      = subtotal * taxRate;
+  const total    = subtotal + tax;
+
+  const fmt = n => '£' + n.toFixed(2);
+
+  shell.innerHTML = `
+    <a class="back-link" href="javascript:history.back()">← Back to tag</a>
+
+    <div class="checkout-header">
+      <h1>Order Summary</h1>
+      <p>Complete your order details</p>
+    </div>
+
+    <div class="checkout-grid">
+
+      <!-- LEFT: Order Details -->
+      <div class="checkout-panel">
+        <h2 class="panel-title">Order Details</h2>
+
+        <div class="order-table">
+          <div class="order-row">
+            <span class="label">Service:</span>
+            <span class="value">Rare Gamertag</span>
+          </div>
+          <div class="order-row">
+            <span class="label">Tag:</span>
+            <span class="value order-tag-badge">${tag.toUpperCase()}</span>
+          </div>
+          <div class="order-row">
+            <span class="label">Quantity:</span>
+            <span class="value">1 gamertag</span>
+          </div>
+          <div class="order-row">
+            <span class="label">Subtotal:</span>
+            <span class="value">${fmt(subtotal)}</span>
+          </div>
+          <div class="order-row">
+            <span class="label">Tax (8%):</span>
+            <span class="value">${fmt(tax)}</span>
+          </div>
+          <div class="order-row total-row">
+            <span class="label">Total:</span>
+            <span class="value" id="totalDisplay">${fmt(total)}</span>
+          </div>
+        </div>
+
+        <div class="trust-strip">
+          <span>Secure checkout</span>
+          <span>Instant delivery</span>
+          <span>24/7 support</span>
+        </div>
+      </div>
+
+      <!-- RIGHT: Customer Information -->
+      <div class="checkout-panel">
+        <h2 class="panel-title">Customer Information</h2>
+
+        <div class="form-group">
+          <label class="form-label" for="emailInput">Email Address <span>*</span></label>
+          <input class="form-input" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email" required>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="instructionsInput">Special Instructions <span style="color:var(--muted-2)">(Optional)</span></label>
+          <textarea class="form-textarea" id="instructionsInput" placeholder="Any special requests or instructions..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Payment Method <span>*</span></label>
+          <div class="payment-grid" id="paymentGrid">
+
+            <button class="payment-option active" data-method="Card" type="button">
+              <span class="payment-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/>
+                  <line x1="2" y1="10" x2="22" y2="10"/>
+                </svg>
+              </span>
+              Card
+            </button>
+
+            <button class="payment-option" data-method="Google Pay" type="button">
+              <span class="payment-icon">
+                <svg viewBox="0 0 24 24" width="24" height="24">
+                  <path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="currentColor"/>
+                </svg>
+              </span>
+              Google Pay
+            </button>
+
+            <button class="payment-option" data-method="Other" type="button">
+              <span class="payment-icon" style="font-size:20px; letter-spacing:2px">···</span>
+              Other
+            </button>
+
+          </div>
+        </div>
+
+        <button class="complete-btn" id="completeBtn">
+          Complete Order — ${fmt(total)}
+        </button>
+
+        <p class="tos-line">
+          By completing this purchase, you agree to our
+          <a href="index.html#faq-anchor">Terms of Service</a> and
+          <a href="index.html#faq-anchor">Privacy Policy</a>.
+        </p>
+      </div>
+
+    </div>
+  `;
+
+  // ── Payment method toggle ──
+  const paymentGrid = document.getElementById('paymentGrid');
+  paymentGrid.addEventListener('click', e => {
+    const btn = e.target.closest('.payment-option');
+    if (!btn) return;
+    paymentGrid.querySelectorAll('.payment-option').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+
+  // ── Complete Order ──
+  const completeBtn = document.getElementById('completeBtn');
+  const emailInput  = document.getElementById('emailInput');
+
+  completeBtn.addEventListener('click', () => {
+    const email        = emailInput.value.trim();
+    const instructions = document.getElementById('instructionsInput').value.trim();
+    const method       = paymentGrid.querySelector('.payment-option.active')?.dataset.method || 'Not specified';
+
+    if (!email) {
+      emailInput.focus();
+      emailInput.style.borderColor = 'rgba(255,80,80,0.6)';
+      emailInput.style.boxShadow   = '0 0 0 3px rgba(255,80,80,0.1)';
+      setTimeout(() => {
+        emailInput.style.borderColor = '';
+        emailInput.style.boxShadow   = '';
+      }, 2000);
+      return;
+    }
+
+    const message = [
+      '🎮 New Tag Order — 4L Tags',
+      '',
+      `Tag: ${tag.toUpperCase()}`,
+      `Price: ${fmt(total)} (incl. 8% tax)`,
+      `Payment: ${method}`,
+      `Customer Email: ${email}`,
+      instructions ? `Instructions: ${instructions}` : '',
+    ].filter(Boolean).join('\n');
+
+    const encoded = encodeURIComponent(message);
+
+    // Clear cart after sending
+    localStorage.removeItem('cart');
+
+    window.open(
+      `https://discord.com/users/820729520754524161`,
+      '_blank'
+    );
+
+    // Show confirmation state on button
+    completeBtn.textContent = '✓ Order sent — check Discord';
+    completeBtn.disabled = true;
+    completeBtn.style.background = 'linear-gradient(135deg, #22c55e, #16a34a)';
+    completeBtn.style.boxShadow  = '0 0 24px rgba(34,197,94,0.35)';
+  });
+}
+</script>
+</body>
+</html>

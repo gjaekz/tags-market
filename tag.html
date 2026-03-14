@@ -218,9 +218,12 @@ function render() {
     <div class="tag-card">
       <span class="rarity-badge">${category || rarity}</span>
       <div class="tag-title">${upper}</div>
-      ${price ? `<div class="tag-price">£${price}</div>` : ''}
+      ${price ? `<div class="tag-price">\u00A3${price}</div>` : ''}
       <div class="tag-length">${metaLine}</div>
-      <button class="copy-btn" id="copyBtn" onclick="copyTag()">⧉ Copy Tag</button>
+      <div class="tag-actions">
+        <button class="copy-btn" id="copyBtn" onclick="copyTag()">&#9167; Copy Tag</button>
+        ${price ? `<button class="hero-cta hero-cta-primary add-to-cart-btn" id="addToCartBtn">Add to Cart</button>` : ''}
+      </div>
     </div>
 
     <div class="stats-row">
@@ -250,6 +253,16 @@ function render() {
     ${tiersSectionHTML}
   `;
 }
+
+// Add to Cart
+  const addToCartBtn = document.getElementById('addToCartBtn');
+  if (addToCartBtn) {
+    addToCartBtn.addEventListener('click', () => {
+      const cartData = { tag, price };
+      localStorage.setItem('cart', JSON.stringify(cartData));
+      window.location.href = 'checkout.html';
+    });
+  }
 
 function copyTag() {
   const tag = new URLSearchParams(window.location.search).get('tag') || '';
