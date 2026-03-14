@@ -218,11 +218,10 @@ function render() {
     <div class="tag-card">
       <span class="rarity-badge">${category || rarity}</span>
       <div class="tag-title">${upper}</div>
-      ${price ? `<div class="tag-price">\u00A3${price}</div>` : ''}
       <div class="tag-length">${metaLine}</div>
       <div class="tag-actions">
-        <button class="copy-btn" id="copyBtn" onclick="copyTag()">⧉ Copy Tag</button>
-        ${price ? `<button id="buyTagBtn" class="hero-cta hero-cta-primary">Buy This Tag</button>` : ''}
+        <button class="copy-btn" id="copyBtn" onclick="copyTag()">&#9167; Copy Tag</button>
+        ${price ? `<button id="orderNowBtn" class="hero-cta hero-cta-primary">Order Now &mdash; &pound;${price}</button>` : ''}
       </div>
     </div>
 
@@ -280,17 +279,19 @@ function copyTag() {
 
 render();
 
-// Buy This Tag — store cart and go to checkout
-const _params = new URLSearchParams(window.location.search);
-const _tag    = _params.get("tag");
-const _price  = _params.get("price");
-const buyBtn  = document.getElementById("buyTagBtn");
-if (buyBtn) {
-  buyBtn.addEventListener("click", () => {
-    localStorage.setItem("cart", JSON.stringify({ tag: _tag, price: _price }));
-    window.location.href = "checkout.html";
-  });
-}
+// Order Now — store cart and go to checkout
+(function () {
+  const p     = new URLSearchParams(window.location.search);
+  const _tag  = p.get("tag");
+  const _price = p.get("price");
+  const btn   = document.getElementById("orderNowBtn");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      localStorage.setItem("cart", JSON.stringify({ tag: _tag, price: _price }));
+      window.location.href = "checkout.html";
+    });
+  }
+})();
 </script>
 </body>
 </html>
