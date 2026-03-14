@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Marketplace for rare 4-letter Xbox gamertags. Secure swaps and curated inventory.">
+<meta property="og:title" content="4L Tags – OG Gamertag Marketplace" />
+<meta property="og:description" content="Browse and purchase rare 4-letter Xbox gamertags. Secure swaps, curated inventory, and premium tags." />
+<meta property="og:url" content="https://ogtagsmarket.netlify.app/" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://ogtagsmarket.netlify.app/assets/images/preview.png" />
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="4L Tags – OG Gamertag Marketplace">
+<meta name="twitter:description" content="Rare OG 4-letter Xbox gamertags available. Browse the marketplace and secure your tag.">
+<meta name="twitter:image" content="https://ogtagsmarket.netlify.app/assets/images/preview.png">
+<title>4L TAGS — Gamertag Marketplace</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="market-page">
+
+<nav class="site-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="4L Tags Home">
+      <span class="nav-brand-mark"></span>
+      <span class="nav-brand-text">4L TAGS</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a class="nav-link" href="index.html">Home</a>
+      <div class="nav-item">
+        <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+          Products
+          <span class="nav-caret"></span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="#gridContainer">Marketplace</a>
+          <a href="#how-it-works">How It Works</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+          Documentation
+          <span class="nav-caret"></span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="#faq-anchor">FAQ</a>
+          <a href="#how-it-works">Swap Process</a>
+        </div>
+      </div>
+      <a class="nav-cta" href="https://discord.com/users/820729520754524161" target="_blank" rel="noopener noreferrer">Community</a>
+    </div>
+  </div>
+</nav>
+
+<div id="cursor-light" aria-hidden="true"></div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-title">4L TAGS</div>
+  <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+  <div class="loader-label">Loading inventory...</div>
+</div>
+
+  <div class="wrapper">
+    <header class="hero">
+    <div class="hero-inner">
+    <div class="hero-content">
+      <div class="logo-tag hero-badge">// Premium Inventory //</div>
+      <h1 class="hero-title">4L Tags Market</h1>
+      <div class="subtitle hero-description">Browse premium gamertag inventory, explore every category, and jump directly into the listings that fit your style.</div>
+      <div class="designer-tag">Designed by <span>GQFY</span></div>
+      <div class="hero-actions">
+        <a class="hero-cta hero-cta-primary primary-btn" href="#market-categories">Explore Products</a>
+      </div>
+    </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat">
+        <span class="stat-num" id="totalCount">1245</span>
+        <span class="stat-label">Available Tags</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">4</span>
+        <span class="stat-label">Letters Each</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">26</span>
+        <span class="stat-label">Starting Letters</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="market-switcher-section" id="market-categories" aria-label="Marketplace categories">
+    <div class="market-switcher-intro">
+      <div class="market-switcher-kicker">Browse Categories</div>
+      <h2 class="market-switcher-title">Choose a Tag Category</h2>
+      <p class="market-switcher-desc">Start by selecting the type of gamertag you want to browse. Each category takes you directly to its own listing section.</p>
+    </div>
+    <div class="market-category-grid">
+      <a class="market-category-card accent-pink" href="#fourl-tags">
+        <span class="market-category-name">4L Tags</span>
+        <span class="market-category-copy">Browse the main four-letter marketplace.</span>
+      </a>
+      <a class="market-category-card accent-cyan" href="#word-tags">
+        <span class="market-category-name">Word Tags</span>
+        <span class="market-category-copy">Jump to full-word gamertag listings.</span>
+      </a>
+      <a class="market-category-card accent-purple" href="#semi-tags">
+        <span class="market-category-name">Semi Tags</span>
+        <span class="market-category-copy">View stylized and partial-word listings.</span>
+      </a>
+      <a class="market-category-card accent-amber" href="3l-tags.html">
+        <span class="market-category-name">3 Letter Tags</span>
+        <span class="market-category-copy">Ultra Rare Collection</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- How It Works Banner -->
+  <section class="how-it-works" id="how-it-works">
+    <div class="hiw-inner">
+      <div class="hiw-intro">
+        <div class="hiw-label">// The Process //</div>
+        <h2 class="hiw-title">How It Works</h2>
+        <p class="hiw-desc">Buying a 4-letter tag is simple. Browse the list, pick your tag, and we handle the rest — live and coordinated.</p>
+        <a href="#faq-anchor" class="hiw-faq-link">Got questions? See the FAQ ↓</a>
+      </div>
+      <div class="hiw-steps">
+        <div class="hiw-step">
+          <div class="hiw-step-num">01</div>
+          <div class="hiw-step-body">
+            <div class="hiw-step-title">Browse & Choose</div>
+            <div class="hiw-step-text">Search or filter the tag list and pick the one you want.</div>
+          </div>
+        </div>
+        <div class="hiw-connector"></div>
+        <div class="hiw-step">
+          <div class="hiw-step-num">02</div>
+          <div class="hiw-step-body">
+            <div class="hiw-step-title">Send Payment</div>
+            <div class="hiw-step-text">Pay via Bitcoin or PayPal F&amp;F. Swap is scheduled once confirmed.</div>
+          </div>
+        </div>
+        <div class="hiw-connector"></div>
+        <div class="hiw-step">
+          <div class="hiw-step-num">03</div>
+          <div class="hiw-step-body">
+            <div class="hiw-step-title">Live Swap</div>
+            <div class="hiw-step-text">Join at the scheduled time. The tag is released and you claim it instantly.</div>
+          </div>
+        </div>
+        <div class="hiw-connector"></div>
+        <div class="hiw-step">
+          <div class="hiw-step-num">04</div>
+          <div class="hiw-step-body">
+            <div class="hiw-step-title">Tag is Yours</div>
+            <div class="hiw-step-text">Done. Your new gamertag is live on your Xbox account.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tag-category tag-category-primary" id="fourl-tags">
+    <div class="tag-category-head">
+      <div class="tag-category-kicker">Marketplace Category</div>
+      <h2 class="tag-category-title">4L Tags</h2>
+      <div class="tag-category-subtitle">Curated four-letter gamertags ready for swap</div>
+      <p class="tag-category-desc">Search the live 4-letter inventory, filter by first letter, and open any listing for the full rarity breakdown.</p>
+    </div>
+    <div class="category-feature accent-pink" id="listing-start">
+      <div class="category-feature-title">4L Tags</div>
+      <div class="category-feature-subtitle">Curated four-letter gamertags ready for swap</div>
+      <p class="category-feature-text">Search the live 4-letter inventory, filter by first letter, and open any listing for the full rarity breakdown.</p>
+    </div>
+    <div class="price-note">Pricing is communicated directly to the buyer by the seller after contact is made.</div>
+
+  <div class="controls">
+    <div class="search-wrap">
+      <span class="search-icon">?</span>
+      <input type="text" id="searchInput" placeholder="Search tags... e.g. Axoi" autocomplete="off" spellcheck="false">
+    </div>
+    <span class="filter-label">Filter:</span>
+    <div class="letter-filters" id="letterFilters"></div>
+    <button class="clear-btn" id="clearBtn">✕ Clear</button>
+  </div>
+
+  <div class="result-info">
+    <span>Showing</span>
+    <span class="result-count" id="visibleCount">1245</span>
+    <span>tags</span>
+  </div>
+
+  <div class="secret-hint">Some tags hide secrets.</div>
+
+  <div class="grid-container" id="gridContainer"></div>
+  </section>
+
+  <section class="tag-category" id="word-tags">
+    <div class="tag-category-head">
+      <div class="tag-category-kicker">Marketplace Category</div>
+      <h2 class="tag-category-title">Word Tags</h2>
+      <div class="tag-category-subtitle">Full word gamertags available for purchase</div>
+      <p class="tag-category-desc">Browse premium dictionary-based gamertags available for direct purchase.</p>
+    </div>
+    <div class="category-feature accent-cyan">
+      <div class="category-feature-title">Word Tags</div>
+      <div class="category-feature-subtitle">Full word gamertags available for purchase</div>
+      <p class="category-feature-text">Browse premium dictionary-based gamertags available for direct purchase.</p>
+    </div>
+    <div class="price-note">Pricing is communicated directly to the buyer by the seller after contact is made.</div>
+    <div class="inventory-grid" id="wordTagsGrid"></div>
+  </section>
+
+  <section class="tag-category" id="semi-tags">
+    <div class="tag-category-head">
+      <div class="tag-category-kicker">Marketplace Category</div>
+      <h2 class="tag-category-title">Semi Tags</h2>
+      <div class="tag-category-subtitle">Partial word and stylized gamertags</div>
+      <p class="tag-category-desc">Unique semi-word gamertags combining structure and readability.</p>
+    </div>
+    <div class="category-feature accent-purple">
+      <div class="category-feature-title">Semi Tags</div>
+      <div class="category-feature-subtitle">Partial word and stylized gamertags</div>
+      <p class="category-feature-text">Unique semi-word gamertags combining structure and readability.</p>
+    </div>
+    <div class="price-note">Pricing is communicated directly to the buyer by the seller after contact is made.</div>
+    <div class="inventory-grid" id="semiTagsGrid"></div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section" id="faq-anchor">
+    <div class="faq-heading">
+      <div class="logo-tag">// Need to know //</div>
+      <h2>FAQ</h2>
+    </div>
+    <div class="faq-grid" id="faqGrid"></div>
+  </section>
+
+  <!-- Trust Block -->
+  <div class="trust-block">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <div class="trust-icon">???</div>
+        <div class="trust-text">
+          <span class="trust-value">TRUSTED SELLER</span>
+          <span class="trust-label">Verified & Reputable</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">?</div>
+        <div class="trust-text">
+          <span class="trust-value">200+ SWAPS</span>
+          <span class="trust-label">Successful Transfers</span>
+        </div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-icon">??</div>
+        <div class="trust-text">
+          <span class="trust-value">DISCORD 2018</span>
+          <span class="trust-label">Active Since 2018</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Disclaimer</span> ? Once you have bought the account it is now your responsibility. Refunds are not possible once the account has left my hands.
+  </footer>
+</div>
+
+<!-- Scroll To Top -->
+<button id="scroll-top" aria-label="Scroll to top">?</button>
+
+<script>
+const nav = document.querySelector('.site-nav');
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+const navItems = document.querySelectorAll('.nav-item');
+const cursorLight = document.getElementById('cursor-light');
+
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+}
+
+navItems.forEach(item => {
+  const trigger = item.querySelector('.nav-link-button');
+  if (!trigger) return;
+
+  trigger.addEventListener('click', () => {
+    if (window.innerWidth > 900) return;
+    const isOpen = item.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+  });
+});
+
+document.addEventListener('click', event => {
+  if (!nav || nav.contains(event.target)) return;
+  navMenu?.classList.remove('open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+  navItems.forEach(item => {
+    item.classList.remove('open');
+    item.querySelector('.nav-link-button')?.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('mousemove', event => {
+  if (!cursorLight) return;
+  cursorLight.style.left = event.clientX + 'px';
+  cursorLight.style.top = event.clientY + 'px';
+});
+
+const scrollTopBtn = document.getElementById('scroll-top');
+window.addEventListener('scroll', () => {
+  scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+</script>
+
+<div id="copy-toast">✓ COPIED</div>
+
+<!-- Floating Contact Button -->
+<a id="contact-fab" href="https://discord.com/users/820729520754524161" target="_blank">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+  CONTACT SELLER
+</a>
+
+<!-- Mobile Alphabet Slider -->
+<div id="alpha-slider"></div>
+
+<script>
+const TAGS = ["Ablp","Abqj","Abqp","Adnc","Agef","agwm","Ainb","ajje","Ajna","Ajnb","Amdn","Amju","Aqgd","Arbm","Asvg","Auhx","Avwz","Axlk","Axoi","aymj","Ayyf","Azpb","bbcz","bboq","Bdnh","Bdza","bfvi","Bgim","Bgqv","Bgsb","Bgyv","Bhqc","Bhwx","Bjci","Bjdu","Bjfp","Bjgh","Bjqt","Bjrf","Bjtd","Bjwo","Bkvu","Blfd","Bmqf","Bnhw","Bnuw","Bnzh","Bpfa","Bpod","Bpqa","Bqjz","Bqsp","Brwf","bthw","Btzh","Bvgd","Bvjg","Bwhu","Bwqh","Bwyn","Bxkh","bxqf","Bxtb","Byvn","Bzhf","Bzhw","Cbos","ccfu","Cdfi","cdfj","Cebq","cejy","Cetw","Cfuu","Cfrw","Cgst","Cgwm","Ckcy","Ckmu","Ckpj","clga","Cmte","Cpfd","Cpya","Cpzp","cqjy","crcp","Csjn","cwbu","Cwtc","Cxtj","cygp","Cywp","Dahu","dbdv","Dbfx","Dbjc","Dbsb","Dbuq","dbyh","Dbyr","Dcjv","Ddgn","Ddng","Dfpr","Dgku","Dgmd","Dgqm","dhsj","Djlt","Djnf","Dkcr","Dljm","Dlqe","Dmwv","Dnfp","Dngb","Dnmi","Dpch","dpdh","Dpmt","Dprf","Dpvm","Dpwy","Dpya","Dtci","Dtkp","Dueb","Dugm","Dvom","Dwbn","Dwhj","Dwje","Dxmx","Dybw","Dzcx","Dzfa","dzwa","Ebhw","ebpr","Ebsb","Echl","Eczk","Edpt","Edpz","Edtw","eegj","Eeqy","eest","efgq","Efkw","Efph","Eftm","Efzq","Egpf","Egvx","egzm","Ehqx","Ehvh","Ehzj","Eidb","Eipb","Ejuw","Ekgu","Eknt","Enfd","Enlq","Ephq","Epsb","Epvt","Epxb","Eqks","Eqqm","erqg","Etmk","euam","euuj","Evpj","Evsj","Ewtr","Exyu","Eyfs","ezht","Ezin","Fbjt","Fcql","Ffyk","ffyh","fgkw","Fhbr","Fhlp","fhsg","Fhvs","Fjdl","Fjfu","Fjmu","Fjqs","Fjxg","Fjyd","Fjyx","Fkbc","Flzj","Fmhf","fmtk","Fmzw","Fnps","Fpat","Fpke","Fpkg","Fpkn","Fpkt","Fpuv","Fpyv","FS","Fsip","fsje","Fsqj","Fsvm","Ftuj","Ftyv","Fvul","Fwrh","Fwzn","Fxyb","Fycf","Fzwb","Fzxp","gbcl","Gblz","Gbpu","Gchl","gckv","Gcrh","Gcxt","Gevh","Gfcd","Gfjo","Gfjq","ggxj","ggzo","Ghfm","Ghlq","Ghwc","Gixq","Gjeo","gjjz","Gkbq","Gkdq","gkfg","Gklp","Gkqb","Glql","Gmiq","Gmvi","Gntb","Gnyd","Gpfb","Gplq","gptj","Gpyb","Gqdp","Gqdy","Gqej","Gqfy","Gqqo","Gqrj","Gscd","Gsio","Gtbt","Gtdg","Gtat","Gtkb","Gtkp","GU","Gvhw","Gvjz","Gvqj","Gvqt","Gwby","Gwrj","Gwva","Gwvd","Gxpd","Gynf","Gyvw","Gzbc","Gzbt","gzwz","Haqg","Hbpf","hcht","Hcji","Hcqn","Hdbe","Hddx","Hdpu","Hexf","Hfzf","Hgkn","Hgzw","Hhcg","Hiet","Hins","Hjpv","HJRN","Hkdo","Hksb","Hlkw","Hlnc","Hlwf","Hmgy","Hmqb","Hnej","Hpbv","Hpcj","Hphe","Hpjg","Hpkg","Hpnw","hpvh","Hpwt","Hqep","Hqlm","Hqob","Hqzl","Hsfo","Hslk","Hsxj","Htgq","Htmj","Hvqs","Hwbm","Hwdl","Hwfi","Hwjq","Hwjx","Hwlc","HWQC","Hxjn","Hzej","Hzgr","Hzje","Hzjw","Hzkd","Hzmw","Hzoc","Hzta","Ibsr","Ibzj","iczv","Idvu","Iekf","Ietv","ifcg","Igqg","Igvf","ihvj","ihwo","ihzq","iido","Ijfh","Ijlp","ijng","ijxo","Ijyj","Ikkg","Ilht","Inbf","inik","inkp","Ipfe","iubq","Iwiq","Iwjd","Iwsy","Ixjj","Izgb","Jbci","jbsh","Jbsq","Jeln","Jftp","Jghx","Jgph","jgqr","Jgwf","Jgzj","Jhgu","Jkcw","Jklv","Jldp","Jnmm","Jpio","Jqbj","jqej","jqih","Jqkf","Jqpf","Jrfi","Jsdi","Jsmp","Jvcb","Jvgf","Jvpd","Jvqv","Jvxc","Jxav","Jzjb","Jzsx","Jzwf","Kajp","Kbbd","Kbjq","Kbpc","Kcfw","Kcqj","Kdhp","Kdqg","Kdyf","kfgl","Kfkc","Kfqk","Kfqs","Kfti","Kggl","Kgnd","Kgoj","Kgpw","Kgwo","Kgya","Khlt","Kiyd","Kjgu","Kjqb","Kkqe","Kkwq","kktr","Kmbq","kmqh","Kmzf","Knfq","Knxj","kpga","Kplf","Kpxb","Kqca","kqcu","Kqtp","Kqvw","kqvy","Kqyi","Kspk","Ktfb","Kunm","Kuqs","Kwbv","Kwfc","Kwkq","Kwlj","Kxjp","Kzbf","Kzje","Kzng","Kzvp","Lbpk","Lbsa","lcgk","Lcnp","Lcov","Lcqu","LGPA","Lhcf","Lhcr","Lhqt","Lhwg","Ljwb","Ljxr","Lkfh","llcq","llgj","llwq","Lmsc","Lnrp","LPYG","Lqfw","Lquf","Lrjy","Lrvj","Ltip","Ltqm","Lwkp","Lwlv","Lwsr","Lwxz","Lxdb","Lzkv","Mafk","mbuf","mbwb","Mbdh","Mbnr","Mbqf","Mbzo","Mcgi","Mcsb","Mcyt","Mczg","mdhw","Mdtl","Memb","MFNQ","Mfyv","Mfzh","Mgdo","Mgje","Mgji","Mgth","Mgwq","Mhve","Mhwn","Mibl","Midk","Mimy","Mjrg","Mjvl","Mkbx","Mklh","Mldq","Mpdw","Mpgu","Mpjw","Mpkf","mpuc","Mpwj","Mqbw","mqcm","Mqfj","Mqfv","Mqkh","Mqtf","Mqvh","Mvfx","Mvhg","Mwbk","Mwdq","Mwpe","Mwvk","Mzoj","Nbkq","Nbpu","Nbqm","Nbxu","Nbyp","Ncdw","Ncuf","Ncvl","Ndjy","Ndug","Nfbo","Nffb","Nfhw","Ngqx","Ngvt","ngxm","Nhde","nhdf","nhfu","Nhgm","nhjq","Nhpm","nhqf","Nibh","Niym","nkdb","Nknw","Nkow","Nksv","nnnw","Nnsb","Nnsg","nntm","nnwa","nnwk","Nodm","Noyj","Npfp","Npqb","Nqgj","nqgn","Nqgt","Nqrg","Nrwg","Nrwt","Ntbf","Ntfa","ntjz","Ntka","Ntpk","Ntwq","Ntye","ntzd","Nvcf","Nvgx","nwnh","nwwp","Nwhc","Nxdm","Nyqm","Nzdc","Nzkz","Nzsb","Obcr","Obmf","Obnz","Obrf","Obwt","Ocgf","Oclp","ocqp","Odbs","Odfl","Odhg","Odhw","odsf","Odtl","oeew","Ofhh","Ofhz","ofmr","Ofmc","Ofsq","ofpd","Ogjw","Ogrf","Ogtw","Ogzm","oiag","Oiko","oixv","Ojft","ojqv","Ojyj","Olkl","omjg","omqw","Opkw","oppf","Opvz","oqjl","oqof","Oqfc","Oqjg","Oqln","Oqnd","Osdq","Otgp","ougj","ouoh","Ouql","Ovdt","Oveb","Ovjf","Ovjm","Ovlu","Owvj","oyfq","Oylt","oymk","oyvp","Ozbv","Ozhw","ozrg","Payz","Pbkl","Pbky","Pbnv","Pbnw","pdtq","Pfbk","Pfdw","Pfmb","Pfmk","Pfpq","Pgnh","Pgtk","Pgul","Pgvc","Phvj","Pjbv","Pjnv","Pjvq","Pkid","Pkld","Pklf","Pkpm","Pktw","PMHC","Pmol","Pmww","Pnpx","Ppbn","ppfv","Pqcb","Pqfn","Pqow","Prpj","Psfv","Ptnq","Pvwt","Pwqo","Pwvz","Pxgm","Pzcw","Pzdk","pzkp","Qbej","Qbki","Qbls","Qbxt","Qclz","Qdjm","Qdyg","Qdzw","Qfgw","Qfnf","Qfti","Qfus","Qfwh","Qggc","Qghx","Qgle","qgpu","Qgqr","Qgym","Qhdb","Qhgx","Qhsu","Qikw","Qjcu","Qjej","Qjgm","Qjsb","Qjvs","Qjzg","Qkjy","Qkrg","Qkwg","Qlhl","Qlmg","Qluj","Qmdi","qmhb","Qmny","Qmqk","Qneu","Qnwr","Qogj","Qowv","Qpcw","Qphd","Qpnl","Qrbv","Qrfa","Qrmh","Qrxo","qsnu","Qtjd","Qtws","Quig","Qvdc","Qwjd","qwqs","Qxmk","Qxph","Qxtw","Qxvi","Qyjc","Qzhb","Rakc","Rbjq","Rbmf","Rbnw","Rbwd","Rbza","Rcdz","Rckx","Rdfb","Rdyq","Rfce","Rfho","Rfjx","Rfsi","Rfxg","Rgae","Rgng","Rgqy","Rhpb","Rjhf","RKGJ","Rkjo","Rkjp","Rkzt","Rlqg","Rmct","rmcx","Rmdc","Rmkf","rmmg","Rmqi","rnfd","Rpej","Rpnf","rpuw","Rqdg","Rqjp","rrzw","Rswh","Rtkl","rwxw","rzjj","Sbch","Sbgq","Sbhf","Sbnk","Sbvk","scqv","Sdpo","sftq","Sfzm","Sgse","Sgtp","Sjbn","Sqkm","Stef","Sulh","Swkj","Szgf","szvu","Tcjf","Tcpx","Tcqj","tcqr","Tdwu","Tezj","tfkd","Tfpw","tfqh","Tfuf","Tgjv","tgml","Tgqv","Tjcr","Tjze","Tjzz","Tklk","Tlne","Tlvj","tmiw","Tnpk","Tpbh","Tpbn","Tpcm","Tpdm","Tpdq","Tpnc","Tpso","Tqgm","Tqph","Ttwi","Tvqb","Tvqu","Tvyw","Twkq","Txgt","Txpw","Tzbg","Uafb","Uafm","uatf","Ubhu","Ubmu","Ubvv","Ucdp","ucgz","Ucyj","Udnm","Uefg","Ufiw","Uflb","Ugcg","Ugsh","uhja","Uhkp","Uiaj","Uiaw","Uigp","Uigr","Ujkm","ujtc","Ujyi","ujyv","Ukqg","Ulcw","Ulgh","ulkf","umhv","Undv","unoc","Unrf","unyw","unzc","Upib","Upnw","uqjy","Uqnc","uqnr","Uqyn","Urbq","urcg","UrhJ","Uskj","Utpu","Utul","Utvg","uufs","Uvbd","Uvgc","uwbg","Uwpl","Uxbw","Uxkg","uxkm","Uxnt","Uxug","Uyqf","vbfw","Vbmt","Vbxj","Vbxl","Vdfq","Vdqg","Vdqj","Vffc","Vfib","Vfnb","Vfpu","Vgnp","Vgtg","Vgti","Vhcp","vhhb","Vhje","Vhqk","Vhqt","Vjbu","Vjfe","Vjfl","vjma","vjmh","vjya","vkkh","vktf","vlho","Vlqk","Vlwi","vlwl","vmgj","Vmqd","Vnqj","vpdq","Vpne","vpvh","vqxm","vqys","vrhf","Vrtw","vsca","Vsdg","Vsgp","vTPH","Vtdk","Vtdo","Vtkp","Vttj","Vufw","vvgu","Vwcm","vwgv","Vwqb","vwru","vygx","vynq","Vyqf","Vyyd","vyyw","vzgd","Vzhb","WAN","wbav","Wbeu","Wbfe","Wbpx","Wbqe","Wcjw","Wcql","Wctm","Wcwj","Wczo","Wdit","Wdzg","Wfbz","Wffb","wfpm","Wfqv","Wfsk","Wfzw","Wgbg","Wgdn","Wgek","wggj","Wglh","Wgpw","wgqb","Wgwb","Whbj","Whco","Whmj","Whpo","Whrw","Whwf","Wjim","Wjzw","Wkeu","wkfz","Wkih","Wkir","Wkvn","wlrl","Wmbf","Wmhc","Wmjx","Wmtq","wmwb","wmwp","wmze","wmzm","Wnbq","wngv","Wnku","wnqw","Woyk","Wpby","wpmv","wqcg","Wqfm","Wqjp","wqjv","wqln","Wqwn","Wrhv","Wrqb","wsjg","Wslg","Wsqg","Wtgk","Wthg","wthj","Wtlm","Wtqj","Wudw","Wvcb","Wvdq","Wvjr","Wwgu","wwqh","wwrc","Wxjm","wxpo","Wxpx","Wyoj","Wyqo","wyuq","Wztw","Xafh","Xbha","XFDQ","Xfpu","Xfzf","Xgpj","Xhqy","Xjkw","Xjsq","xkcp","Xkgc","Xlqh","Xmqr","Xnje","Xojc","Xpfj","xphv","Xphw","Xpke","xprn","Xpyv","xqay","Xqhg","Xqpd","Xrbv","Xszj","Xwbs","xwcm","xwrf","Xwgc","Xzbq","Xzfw","Yavg","Ybjb","Ybkw","Yblr","Ybrm","Ybrp","Ycgv","Yciy","Ycvj","YDCO","Ydvx","Yfgn","yfls","Yfrz","Ygpw","Yhgx","Yiiz","Yjca","Yjdg","Yjgl","Yjjr","Yjkc","Yjot","Yjpd","Yjpe","Yjrk","Yjrw","Yjso","Ykcg","Ykrp","Ylcw","Yllf","Ylme","ylmy","Ylni","Ylqm","Ylqn","Yltz","Ymht","Ymtj","Ynjw","Ynmc","ypfk","Yqcr","Yqfk","Yqgr","Yqho","Yqjv","Yqxe","yrqc","Ysdl","Ysgh","Yspq","Ysxj","Ytgp","Ytoy","Ytpw","Yvbj","Yvhf","yvwt","Ywct","Ywgh","Ywmc","Ywrv","Yxkn","Yxqc","Yxud","yyqe","Yzjo","Zbca","Zbhb","Zbhm","Zblf","Zbmm","Zbnv","Zbqf","Zcfk","Zckf","Zdrb","zdvq","Zfdn","Zfdu","Zfhs","Zfkc","zfnw","Zfoq","Zfwv","Zgpj","Zgpv","zgvm","Zhvb","Zjba","Zjog","Zjqd","Zjwk","Zjyg","Zkcv","Zkhs","Zklg","Zknp","zlfv","Zlgb","Zlhw","Zlnh","Zmfv","Znkl","Zpbh","zpyc","Zqml","Zqzd","Zrdv","Zrmf","zrpu","Zsaj","Zsbk","Zsgv","Zsqt","Zthb","Ztqi","Ztzx","Zwkv","zwsf","Zydv","Zypg","zxwg"];
+
+const WORD_TAGS = [
+  { name: "Accumulation", price: "?150", subtitle: "Dictionary-based premium tag", accent: "cyan" },
+  { name: "Alignment", price: "?250", subtitle: "Structured full-word identity", accent: "blue" },
+  { name: "Amargo", price: "?125", subtitle: "Short full-word profile", accent: "purple" },
+  { name: "Asci", price: "?300", subtitle: "Dictionary-based premium tag", accent: "cyan" },
+  { name: "Assister", price: "?200", subtitle: "Readable full-word tag", accent: "amber" },
+  { name: "Avidness", price: "?200", subtitle: "Readable full-word tag", accent: "blue" },
+  { name: "Badlands", price: "?150", subtitle: "Structured full-word identity", accent: "purple" },
+  { name: "Beautify", price: "?450", subtitle: "High-end premium word tag", accent: "pink" },
+  { name: "Bottleneck", price: "?130", subtitle: "Long-form word listing", accent: "amber" },
+  { name: "Briefcase", price: "?250", subtitle: "Premium word identity", accent: "cyan" },
+  { name: "Charred", price: "?275", subtitle: "Clean readable word tag", accent: "red" },
+  { name: "Chesapeake", price: "?200", subtitle: "Long-form word identity", accent: "purple" },
+  { name: "Claremont", price: "?150", subtitle: "Geographic full-word tag", accent: "blue" },
+  { name: "Clumps", price: "?300", subtitle: "Short premium word", accent: "cyan" },
+  { name: "Concoction", price: "?300", subtitle: "Unique word listing", accent: "purple" },
+  { name: "Contraction", price: "?200", subtitle: "Long-form word listing", accent: "amber" },
+  { name: "Converters", price: "?200", subtitle: "Structured premium word", accent: "cyan" },
+  { name: "Craftsman", price: "?225", subtitle: "Recognizable full-word tag", accent: "blue" },
+  { name: "Cultivating", price: "?200", subtitle: "Extended word identity", accent: "purple" },
+  { name: "Deflection", price: "?350", subtitle: "Premium dictionary tag", accent: "pink" },
+  { name: "Denominator", price: "?300", subtitle: "Math-inspired word tag", accent: "amber" },
+  { name: "Diplomat", price: "?250", subtitle: "Clean premium word", accent: "cyan" },
+  { name: "Divisor", price: "?300", subtitle: "Short premium word", accent: "blue" },
+  { name: "Drags", price: "?400", subtitle: "Short sharp word tag", accent: "red" },
+  { name: "Duets", price: "?300", subtitle: "Compact word identity", accent: "purple" },
+  { name: "Dynamites", price: "?175", subtitle: "High-energy word listing", accent: "amber" },
+  { name: "Electrifies", price: "?150", subtitle: "Extended word identity", accent: "cyan" },
+  { name: "Environmental", price: "?300", subtitle: "Long-form premium word", accent: "blue" },
+  { name: "Enzymes", price: "?250", subtitle: "Science-style word tag", accent: "purple" },
+  { name: "Extensions", price: "?200", subtitle: "Structured word listing", accent: "amber" },
+  { name: "Extravagance", price: "?300", subtitle: "Luxury word identity", accent: "pink" },
+  { name: "Factious", price: "?80", subtitle: "Entry word listing", accent: "cyan" },
+  { name: "Findings", price: "?225", subtitle: "Readable full-word tag", accent: "blue" },
+  { name: "Florists", price: "?200", subtitle: "Premium plural word", accent: "purple" },
+  { name: "Folate", price: "?100", subtitle: "Compact clean word", accent: "amber" },
+  { name: "Foxes", price: "?550", subtitle: "Ultra-clean short word", accent: "red" },
+  { name: "Geology", price: "?500", subtitle: "Strong dictionary name", accent: "cyan" },
+  { name: "Havens", price: "?500", subtitle: "High-end short word", accent: "blue" },
+  { name: "Heritance", price: "?150", subtitle: "Readable word listing", accent: "purple" },
+  { name: "Honker", price: "?150", subtitle: "Short playful word", accent: "amber" },
+  { name: "Hoofs", price: "?200", subtitle: "Short premium plural", accent: "red" },
+  { name: "Ingredients", price: "?250", subtitle: "Extended word identity", accent: "cyan" },
+  { name: "Intermediate", price: "?400", subtitle: "Top-tier long-form word", accent: "pink" },
+  { name: "Juicer", price: "?300", subtitle: "Compact premium word", accent: "amber" },
+  { name: "Kettle", price: "?300", subtitle: "Clean household word", accent: "blue" },
+  { name: "Literature", price: "?350", subtitle: "High-value dictionary word", accent: "purple" },
+  { name: "Package", price: "?600", subtitle: "Top-tier marketplace word", accent: "blue" },
+  { name: "Predicament", price: "?400", subtitle: "Long-form premium tag", accent: "red" },
+  { name: "Recipients", price: "?250", subtitle: "Structured full-word listing", accent: "cyan" },
+  { name: "Regex", price: "?125", subtitle: "Tech-flavored short word", accent: "blue" },
+  { name: "Roadhouse", price: "?250", subtitle: "Premium full-word identity", accent: "amber" },
+  { name: "Slimming", price: "?200", subtitle: "Readable action word", accent: "purple" },
+  { name: "Smoothen", price: "?250", subtitle: "Clean premium word", accent: "pink" },
+  { name: "Speedway", price: "?300", subtitle: "Fast premium word", accent: "red" },
+  { name: "Stirring", price: "?200", subtitle: "Recognizable word listing", accent: "cyan" },
+  { name: "Thumping", price: "?300", subtitle: "Impact-style word tag", accent: "blue" },
+  { name: "Transmitting", price: "?225", subtitle: "Long-form tech word", accent: "purple" },
+  { name: "Tripods", price: "?125", subtitle: "Compact premium plural", accent: "amber" },
+  { name: "Twere", price: "?150", subtitle: "Short uncommon word", accent: "cyan" },
+  { name: "Yesterdays", price: "?250", subtitle: "Nostalgic premium word", accent: "pink" },
+  { name: "Yonker", price: "?125", subtitle: "Short clean word", accent: "red" },
+  { name: "Zoology", price: "?100", subtitle: "Entry premium word tag", accent: "purple" }
+];
+
+const SEMI_TAGS = [
+  { name: "Abbozzo", price: "?30", subtitle: "Stylized semi-word format", accent: "cyan" },
+  { name: "Abdicant", price: "?60", subtitle: "Structured semi-word listing", accent: "blue" },
+  { name: "Abirritate", price: "?30", subtitle: "Extended stylized semi tag", accent: "purple" },
+  { name: "Abvolts", price: "?30", subtitle: "Compact semi-word listing", accent: "amber" },
+  { name: "Acerate", price: "?40", subtitle: "Clean semi-word structure", accent: "blue" },
+  { name: "Achromic", price: "?50", subtitle: "Sharp partial-word identity", accent: "purple" },
+  { name: "Achromous", price: "?30", subtitle: "Stylized semi-word listing", accent: "cyan" },
+  { name: "Admittee", price: "?60", subtitle: "Readable semi-word tag", accent: "amber" },
+  { name: "Adulate", price: "?40", subtitle: "Clean stylized semi tag", accent: "red" },
+  { name: "Aerogenic", price: "?50", subtitle: "Technical semi-word listing", accent: "purple" },
+  { name: "Agatizes", price: "?40", subtitle: "Balanced semi-word identity", accent: "amber" },
+  { name: "Alkanets", price: "?30", subtitle: "Compact semi-word profile", accent: "cyan" },
+  { name: "Alligate", price: "?30", subtitle: "Playful semi-word listing", accent: "blue" },
+  { name: "Almery", price: "?60", subtitle: "Short semi-word tag", accent: "purple" },
+  { name: "Alphabetize", price: "?50", subtitle: "Extended stylized listing", accent: "pink" },
+  { name: "Altun", price: "?50", subtitle: "Short premium semi tag", accent: "amber" },
+  { name: "Amaleta", price: "?50", subtitle: "Soft stylized semi-word", accent: "cyan" },
+  { name: "Ambery", price: "?80", subtitle: "Premium readable semi-word", accent: "red" },
+  { name: "Ambrosia", price: "?150", subtitle: "Premium semi-word listing", accent: "pink" },
+  { name: "Amids", price: "?60", subtitle: "Compact readable semi tag", accent: "blue" },
+  { name: "Amphimixis", price: "?30", subtitle: "Rare stylized semi-word", accent: "purple" },
+  { name: "Amylopectin", price: "?30", subtitle: "Scientific semi-word identity", accent: "amber" },
+  { name: "Anabasis", price: "?40", subtitle: "Balanced semi-word listing", accent: "cyan" },
+  { name: "Angolese", price: "?40", subtitle: "Readable semi-word tag", accent: "blue" },
+  { name: "Anglings", price: "?75", subtitle: "Balanced stylized tag", accent: "red" },
+  { name: "Antiphona", price: "?30", subtitle: "Stylized semi-word profile", accent: "purple" },
+  { name: "Antiegoist", price: "?60", subtitle: "Extended semi-word listing", accent: "amber" },
+  { name: "Aptenodytes", price: "?30", subtitle: "Rare semi-word format", accent: "cyan" },
+  { name: "Arcaneness", price: "?30", subtitle: "Mystic semi-word listing", accent: "blue" },
+  { name: "Archisphere", price: "?40", subtitle: "Structured semi-word identity", accent: "purple" },
+  { name: "Arnut", price: "?60", subtitle: "Short semi-word listing", accent: "amber" },
+  { name: "Artless", price: "?60", subtitle: "Clean stylized semi tag", accent: "red" },
+  { name: "Artlet", price: "?60", subtitle: "Compact semi-word tag", accent: "cyan" },
+  { name: "Asperates", price: "?70", subtitle: "Strong semi-word listing", accent: "blue" },
+  { name: "Assentation", price: "?50", subtitle: "Long-form semi-word", accent: "purple" },
+  { name: "Athenian", price: "?60", subtitle: "Readable semi-word identity", accent: "amber" },
+  { name: "Bitterer", price: "?120", subtitle: "High-end semi-word tag", accent: "pink" },
+  { name: "Blueish", price: "?125", subtitle: "Soft readable semi-word", accent: "cyan" },
+  { name: "Bondless", price: "?80", subtitle: "Strong stylized listing", accent: "red" },
+  { name: "Bottier", price: "?30", subtitle: "Compact semi-word listing", accent: "blue" },
+  { name: "Brigand", price: "?50", subtitle: "Sharp readable semi tag", accent: "purple" },
+  { name: "Bulldozing", price: "?100", subtitle: "Heavy-impact semi-word", accent: "amber" },
+  { name: "Cachets", price: "?100", subtitle: "Premium semi-word listing", accent: "cyan" },
+  { name: "Catchline", price: "?80", subtitle: "Statement-style semi tag", accent: "blue" },
+  { name: "Cervoid", price: "?30", subtitle: "Unique semi-word profile", accent: "purple" },
+  { name: "Commandants", price: "?70", subtitle: "Structured long-form semi", accent: "amber" },
+  { name: "Conclusory", price: "?90", subtitle: "Long-form stylized identity", accent: "purple" },
+  { name: "Conusant", price: "?100", subtitle: "Premium semi-word identity", accent: "pink" },
+  { name: "Customizers", price: "?125", subtitle: "High-end semi-word listing", accent: "red" },
+  { name: "Cycladic", price: "?40", subtitle: "Compact semi-word format", accent: "cyan" },
+  { name: "Dadder", price: "?75", subtitle: "Short stylized listing", accent: "blue" },
+  { name: "Dading", price: "?75", subtitle: "Clean semi-word identity", accent: "purple" },
+  { name: "Decke", price: "?150", subtitle: "Short premium semi-word", accent: "pink" },
+  { name: "Decorates", price: "?125", subtitle: "Readable premium semi tag", accent: "amber" },
+  { name: "Dehumidifier", price: "?75", subtitle: "Extended semi-word listing", accent: "cyan" },
+  { name: "Deportations", price: "?80", subtitle: "Long-form semi-word", accent: "red" },
+  { name: "Stationer", price: "?60", subtitle: "Classic semi-word profile", accent: "amber" },
+  { name: "Stabbingly", price: "?90", subtitle: "Impact-style semi-word", accent: "purple" },
+  { name: "Thorite", price: "?100", subtitle: "Compact premium semi-word", accent: "cyan" },
+  { name: "Tomahawker", price: "?125", subtitle: "High-end semi-word listing", accent: "blue" },
+  { name: "Toolboxes", price: "?125", subtitle: "Structured semi-word identity", accent: "amber" },
+  { name: "Unhateful", price: "?125", subtitle: "Readable semi-word listing", accent: "pink" },
+  { name: "Voiceless", price: "?100", subtitle: "Strong clean marketplace tag", accent: "pink" },
+  { name: "Walruses", price: "?100", subtitle: "Recognizable semi-word listing", accent: "purple" },
+  { name: "Weathers", price: "?150", subtitle: "Premium readable semi-word", accent: "red" }
+];
+
+const grid = document.getElementById('gridContainer');
+const wordTagsGrid = document.getElementById('wordTagsGrid');
+const semiTagsGrid = document.getElementById('semiTagsGrid');
+const searchInput = document.getElementById('searchInput');
+const letterFiltersEl = document.getElementById('letterFilters');
+const visibleCountEl = document.getElementById('visibleCount');
+const clearBtn = document.getElementById('clearBtn');
+
+let activeLetter = null;
+
+// Build letter filter buttons
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+letters.forEach(l => {
+  const btn = document.createElement('button');
+  btn.className = 'letter-btn';
+  btn.textContent = l;
+  btn.dataset.letter = l;
+  btn.addEventListener('click', () => {
+    if (activeLetter === l) {
+      activeLetter = null;
+      btn.classList.remove('active');
+    } else {
+      document.querySelectorAll('.letter-btn.active').forEach(b => b.classList.remove('active'));
+      activeLetter = l;
+      btn.classList.add('active');
+    }
+    searchInput.value = '';
+    renderTags();
+  });
+  letterFiltersEl.appendChild(btn);
+});
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  activeLetter = null;
+  document.querySelectorAll('.letter-btn.active').forEach(b => b.classList.remove('active'));
+  renderTags();
+  searchInput.focus();
+});
+
+searchInput.addEventListener('input', () => {
+  activeLetter = null;
+  document.querySelectorAll('.letter-btn.active').forEach(b => b.classList.remove('active'));
+  renderTags();
+});
+
+function highlight(text, query) {
+  if (!query) return text;
+  const idx = text.toLowerCase().indexOf(query.toLowerCase());
+  if (idx === -1) return text;
+  return text.slice(0, idx) + '<mark>' + text.slice(idx, idx + query.length) + '</mark>' + text.slice(idx + query.length);
+}
+
+function renderTagMarkup(tag, query) {
+  const content = highlight(tag, query);
+  if (tag.toLowerCase() === 'gqfy') {
+    return `<a href="secret-discount.html" class="tag-secret">${content}</a>`;
+  }
+  return content;
+}
+
+function renderCategoryCards(items, container, categoryLabel) {
+  if (!container) return;
+  container.innerHTML = '';
+
+  items.forEach((item, index) => {
+    const card = document.createElement('div');
+    card.className = 'inventory-item';
+    card.style.animationDelay = `${Math.min(index * 18, 400)}ms`;
+    card.innerHTML = `
+      <div class="inventory-name">${item.name}</div>
+      <div class="inventory-meta">
+        <span class="inventory-category">${categoryLabel}</span>
+      </div>
+    `;
+    card.addEventListener('click', () => {
+      openTagDetail(item.name, {
+        category: categoryLabel
+      });
+    });
+    container.appendChild(card);
+  });
+}
+
+function renderTags() {
+  const query = searchInput.value.trim();
+  let filtered;
+
+  if (activeLetter) {
+    filtered = TAGS.filter(t => t[0].toUpperCase() === activeLetter);
+  } else if (query) {
+    filtered = TAGS.filter(t => t.toLowerCase().includes(query.toLowerCase()));
+  } else {
+    filtered = TAGS;
+  }
+
+  visibleCountEl.textContent = filtered.length;
+  grid.innerHTML = '';
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div class="no-results"><span class="big-text">404</span><p>No tags found matching your search</p></div>`;
+    return;
+  }
+
+  // Group by first letter
+  const groups = {};
+  filtered.forEach(tag => {
+    const letter = tag[0].toUpperCase();
+    if (!groups[letter]) groups[letter] = [];
+    groups[letter].push(tag);
+  });
+
+  Object.keys(groups).sort().forEach(letter => {
+    const section = document.createElement('div');
+
+    const header = document.createElement('div');
+    header.className = 'section-header';
+    header.innerHTML = `${letter} <span class="section-count">${groups[letter].length} tags</span>`;
+    section.appendChild(header);
+
+    const tagGrid = document.createElement('div');
+    tagGrid.className = 'tag-grid';
+
+    groups[letter].forEach((tag, i) => {
+      const item = document.createElement('div');
+      item.className = 'tag-item';
+      item.style.animationDelay = `${Math.min(i * 18, 400)}ms`;
+      item.innerHTML = renderTagMarkup(tag, query);
+      if (tag.toLowerCase() === 'gqfy') {
+        item.addEventListener('click', () => {
+          window.location.href = 'secret-discount.html';
+        });
+        item.querySelector('.tag-secret')?.addEventListener('click', event => {
+          event.stopPropagation();
+        });
+      } else {
+        item.addEventListener('click', () => openTagPage(tag, item));
+      }
+      tagGrid.appendChild(item);
+    });
+
+    section.appendChild(tagGrid);
+    grid.appendChild(section);
+  });
+}
+
+renderTags();
+renderCategoryCards(WORD_TAGS, wordTagsGrid, 'Word Tags');
+renderCategoryCards(SEMI_TAGS, semiTagsGrid, 'Semi Tags');
+document.getElementById('totalCount').textContent = TAGS.length;
+visibleCountEl.textContent = TAGS.length;
+
+// Dismiss loader after bar animation completes
+setTimeout(() => {
+  document.getElementById('loader').classList.add('hidden');
+}, 1050);
+
+// TAG DETAILS PAGE
+function openTagPage(tag, el) {
+  if (tag.toLowerCase() === 'gqfy') {
+    window.location.href = 'secret-discount.html';
+    return;
+  }
+  // Brief visual flash then open
+  el.classList.add('copied');
+  el.innerHTML = '? ' + tag;
+  setTimeout(() => {
+    el.classList.remove('copied');
+    el.innerHTML = renderTagMarkup(tag, searchInput.value.trim());
+  }, 300);
+  openTagDetail(tag);
+}
+
+function openTagDetail(tag, options = {}) {
+  const params = new URLSearchParams({ tag });
+  if (options.category) params.set('category', options.category);
+  window.open('tag.html?' + params.toString(), '_blank');
+}
+
+// COPY ON TAP
+const toast = document.getElementById('copy-toast');
+let toastTimer;
+function copyTag(tag, el) {
+  navigator.clipboard.writeText(tag).catch(() => {
+    // fallback for older mobile browsers
+    const ta = document.createElement('textarea');
+    ta.value = tag;
+    ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+  // Visual feedback on the tag
+  el.classList.add('copied');
+  el.innerHTML = '? ' + tag;
+  setTimeout(() => {
+    el.classList.remove('copied');
+    el.innerHTML = renderTagMarkup(tag, searchInput.value.trim());
+  }, 1200);
+  // Toast
+  toast.textContent = '✓ ' + tag.toUpperCase() + ' COPIED';
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+// MOBILE ALPHABET SLIDER
+const alphaSlider = document.getElementById('alpha-slider');
+'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(l => {
+  const ch = document.createElement('div');
+  ch.className = 'alpha-char';
+  ch.textContent = l;
+  ch.dataset.letter = l;
+  alphaSlider.appendChild(ch);
+});
+
+function setAlphaActive(l) {
+  document.querySelectorAll('.alpha-char').forEach(c => c.classList.toggle('active', c.dataset.letter === l));
+  document.querySelectorAll('.letter-btn').forEach(b => b.classList.toggle('active', b.dataset.letter === l));
+}
+
+alphaSlider.addEventListener('click', e => {
+  const ch = e.target.closest('.alpha-char');
+  if (!ch) return;
+  const l = ch.dataset.letter;
+  if (activeLetter === l) {
+    activeLetter = null;
+    setAlphaActive(null);
+  } else {
+    activeLetter = l;
+    setAlphaActive(l);
+  }
+  searchInput.value = '';
+  renderTags();
+});
+
+// Touch-drag support for the slider
+let isDragging = false;
+alphaSlider.addEventListener('touchstart', e => { isDragging = true; }, { passive: true });
+alphaSlider.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  e.preventDefault();
+  const touch = e.touches[0];
+  const el = document.elementFromPoint(touch.clientX, touch.clientY);
+  if (el && el.classList.contains('alpha-char') && el.dataset.letter !== activeLetter) {
+    activeLetter = el.dataset.letter;
+    setAlphaActive(activeLetter);
+    searchInput.value = '';
+    renderTags();
+  }
+}, { passive: false });
+alphaSlider.addEventListener('touchend', () => { isDragging = false; }, { passive: true });
+
+// Keep clear button in sync with slider
+clearBtn.addEventListener('click', () => {
+  setAlphaActive(null);
+});
+
+// FAQ Data
+const FAQS = [
+  {
+    q: "What am I purchasing?",
+    a: "You are purchasing the opportunity to acquire a specific Xbox gamertag currently owned by the seller. The tag will be transferred through a coordinated swap process so it can be claimed by your account."
+  },
+  {
+    q: "How does the gamertag swap work?",
+    a: "A reservation method is used to secure the gamertag before the transfer. Once payment is confirmed, the tag is temporarily reserved so it cannot be taken by others. A time is then scheduled for the swap, where the gamertag is released from the original account and immediately claimed on your account. The process is coordinated live to ensure the transfer happens quickly and smoothly."
+  },
+  {
+    q: "How long does the swap process take?",
+    a: "The actual swap usually takes only a few minutes. However, scheduling may depend on availability and time zones. Most swaps are completed within 5?15 minutes once both parties are ready."
+  },
+  {
+    q: "Is the gamertag guaranteed?",
+    a: "While every precaution is taken to perform the swap quickly and safely, no gamertag transfer can be guaranteed 100% due to the nature of Xbox's system. The process is coordinated carefully to minimize risk."
+  },
+  {
+    q: "What payment methods are accepted?",
+    a: "Payment is accepted in Bitcoin (BTC). In particular cases, PayPal Friends & Family may also be accepted. The exact payment details will be provided before the transaction."
+  },
+  {
+    q: "When do I need to send payment?",
+    a: "Payment must be completed before the swap is scheduled. Once the transaction is confirmed on the blockchain, the swap time will be arranged."
+  },
+  {
+    q: "Are refunds available?",
+    a: "Due to the nature of digital goods and blockchain payments, all sales are final. Please make sure you are ready to complete the swap before sending payment."
+  },
+  {
+    q: "What do I need before the swap?",
+    a: null,
+    list: [
+      "An Xbox account ready to change its gamertag",
+      "A free gamertag change available (or the ability to purchase one)",
+      "Availability at the scheduled swap time"
+    ]
+  },
+  {
+    q: "Do I need to be online during the swap?",
+    a: "Yes. You must be present so you can claim the gamertag immediately after it is released."
+  },
+  {
+    q: "Can someone else take the gamertag during the swap?",
+    a: "Although the swap is coordinated to happen very quickly, gamertags technically become public the moment they are released. The process is executed immediately to reduce this risk as much as possible."
+  },
+  {
+    q: "How will the swap be coordinated?",
+    a: "Communication will take place through the agreed contact method (for example Discord or direct messaging) so both parties can act simultaneously."
+  },
+  {
+    q: "Can I reserve a gamertag before paying?",
+    a: "Reservations may be possible depending on demand, but they are not guaranteed. In most cases, the gamertag is secured once payment is received."
+  },
+  {
+    q: "What happens if I miss the scheduled swap time?",
+    a: "If you are unable to attend at the scheduled time, the swap will need to be rescheduled. Delays may occur depending on availability."
+  },
+  {
+    q: "Is this affiliated with Microsoft or Xbox?",
+    a: "No. This is a private transaction between individuals and is not affiliated with Microsoft or Xbox."
+  }
+];
+
+const faqGrid = document.getElementById('faqGrid');
+
+FAQS.forEach((faq, i) => {
+  const item = document.createElement('div');
+  item.className = 'faq-item';
+
+  const btn = document.createElement('button');
+  btn.className = 'faq-question';
+  btn.innerHTML = `<span>${faq.q}</span><span class="faq-icon">+</span>`;
+
+  const answer = document.createElement('div');
+  answer.className = 'faq-answer';
+
+  if (faq.a) {
+    answer.innerHTML = `<p>${faq.a}</p>`;
+  }
+  if (faq.list) {
+    const ul = document.createElement('ul');
+    faq.list.forEach(li => {
+      const el = document.createElement('li');
+      el.textContent = li;
+      ul.appendChild(el);
+    });
+    if (faq.a) answer.querySelector('p').after(ul);
+    else answer.appendChild(ul);
+  }
+
+  btn.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+
+  item.appendChild(btn);
+  item.appendChild(answer);
+  faqGrid.appendChild(item);
+});
+</script>
+</body>
+</html>

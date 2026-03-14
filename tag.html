@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tag Details — 4L Tags</title>
+<link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="tag-page">
+<nav class="site-nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="nav-brand" href="index.html" aria-label="4L Tags Home">
+      <span class="nav-brand-mark"></span>
+      <span class="nav-brand-text">4L TAGS</span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a class="nav-link" href="index.html">Home</a>
+      <div class="nav-item">
+        <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+          Products
+          <span class="nav-caret"></span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="index.html#gridContainer">Marketplace</a>
+          <a href="#page">Current Tag</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+          Documentation
+          <span class="nav-caret"></span>
+        </button>
+        <div class="nav-dropdown">
+          <a href="index.html#faq-anchor">FAQ</a>
+          <a href="index.html#how-it-works">Swap Process</a>
+        </div>
+      </div>
+      <a class="nav-cta" href="https://discord.com/users/820729520754524161" target="_blank" rel="noopener noreferrer">Community</a>
+    </div>
+  </div>
+</nav>
+<div id="cursor-light" aria-hidden="true"></div>
+<div class="page" id="page"></div>
+<div id="copy-toast"></div>
+
+<script>
+const nav = document.querySelector('.site-nav');
+const navToggle = document.querySelector('.nav-toggle');
+const navMenu = document.querySelector('.nav-menu');
+const navItems = document.querySelectorAll('.nav-item');
+const cursorLight = document.getElementById('cursor-light');
+
+if (navToggle && navMenu) {
+  navToggle.addEventListener('click', () => {
+    const isOpen = navMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+}
+
+navItems.forEach(item => {
+  const trigger = item.querySelector('.nav-link-button');
+  if (!trigger) return;
+
+  trigger.addEventListener('click', () => {
+    if (window.innerWidth > 900) return;
+    const isOpen = item.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', String(isOpen));
+  });
+});
+
+document.addEventListener('click', event => {
+  if (!nav || nav.contains(event.target)) return;
+  navMenu?.classList.remove('open');
+  navToggle?.setAttribute('aria-expanded', 'false');
+  navItems.forEach(item => {
+    item.classList.remove('open');
+    item.querySelector('.nav-link-button')?.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('mousemove', event => {
+  if (!cursorLight) return;
+  cursorLight.style.left = event.clientX + 'px';
+  cursorLight.style.top = event.clientY + 'px';
+});
+
+const RARITY_CONFIG = {
+  "Ultra Rare": {
+    color: "#ff3cac",
+    glow: "rgba(255,60,172,0.2)",
+    desc: "Ultra Rare tags contain zero vowels — the most sought-after tier. Pure consonant combinations are extremely difficult to find and highly desirable.",
+    rules: ["No vowels (A E I O U)", "All consonants", "Maximum desirability"]
+  },
+  "Rare": {
+    color: "#f5a623",
+    glow: "rgba(245,166,35,0.18)",
+    desc: "Rare tags contain exactly one vowel and have strong letter distribution. These are highly valued for their clean, sharp look.",
+    rules: ["Exactly 1 vowel", "Strong consonant structure", "Highly sought after"]
+  },
+  "Pattern Tags": {
+    color: "#a855f7",
+    glow: "rgba(168,85,247,0.18)",
+    desc: "Pattern tags contain repeating structures or mirror-like letter arrangements that make them visually distinctive and memorable.",
+    rules: ["Repeating letters (AABB)", "Mirror patterns (ABBA)", "Alternating structure (ABAB)"]
+  },
+  "Premium": {
+    color: "#00d4ff",
+    glow: "rgba(0,212,255,0.18)",
+    desc: "Premium tags feel clean and readable. They have good symmetry, are often pronounceable, and carry a polished recognizable structure.",
+    rules: ["Pronounceable", "Good symmetry", "Recognizable structure"]
+  },
+  "Common": {
+    color: "#555570",
+    glow: "rgba(85,85,112,0.12)",
+    desc: "Standard 4-letter combinations that do not match other rarity categories. Still valid gamertags with unique character.",
+    rules: ["Standard combination", "4 letters", "Unique identifier"]
+  }
+};
+
+const TIERS = [
+  { name: "Ultra Rare", rule: "No vowels" },
+  { name: "Rare",       rule: "Exactly 1 vowel" },
+  { name: "Pattern Tags", rule: "Repeating characters" },
+  { name: "Premium",    rule: "Pronounceable / clean" },
+  { name: "Common",     rule: "Everything else" }
+];
+
+function classifyTag(tag) {
+  if (!/[aeiou]/i.test(tag)) return "Ultra Rare";
+  if ((tag.match(/[aeiou]/gi) || []).length === 1) return "Rare";
+  if (/(.)(\1)/.test(tag)) return "Pattern Tags";
+  // Premium: check pronounceability heuristics
+  const lower = tag.toLowerCase();
+  const vowelCount = (lower.match(/[aeiou]/g) || []).length;
+  const consonantRuns = lower.replace(/[aeiou]/g, ' ').trim().split(/ +/).filter(Boolean);
+  const longestConsonantRun = Math.max(...consonantRuns.map(r => r.length), 0);
+  if (vowelCount >= 1 && longestConsonantRun <= 2) return "Premium";
+  return "Common";
+}
+
+function getVowelCount(tag) {
+  return (tag.match(/[aeiou]/gi) || []).length;
+}
+
+function hasPattern(tag) {
+  return /(.)(\1)/.test(tag);
+}
+
+function render() {
+  const params = new URLSearchParams(window.location.search);
+  const tag = params.get('tag') || '';
+  const category = params.get('category') || '';
+  const page = document.getElementById('page');
+
+  if (!tag) {
+    page.innerHTML = '<div class="not-found"><div class="big">404</div><p>No tag specified.</p><button class="back-btn" onclick="history.back()">Back to listings</button></div>';
+    return;
+  }
+
+  const upper = tag.toUpperCase();
+  const rarity = classifyTag(tag);
+  const cfg = RARITY_CONFIG[rarity];
+  const vowels = getVowelCount(tag);
+  const uniqueChars = new Set(tag.toLowerCase()).size;
+  const inventoryLabel = category || '4L Tags';
+  const metaLine = category ? `${tag.length} characters · ${category}` : `${tag.length} characters · Xbox Gamertag`;
+  const infoTitle = category ? `${category} Listing` : rarity;
+  const infoDesc = category
+    ? `${upper} is currently listed in the ${category} marketplace. Pricing is communicated directly to the buyer by the seller after contact is made.`
+    : cfg.desc;
+  // Apply CSS vars
+  document.documentElement.style.setProperty('--rarity-color', cfg.color);
+  document.documentElement.style.setProperty('--rarity-glow', cfg.glow);
+  document.title = upper + ' — ' + inventoryLabel;
+
+  // Build tiers list
+  const tiersHTML = TIERS.map(t => {
+    const isCurrent = t.name === rarity;
+    const color = RARITY_CONFIG[t.name].color;
+    return `<div class="tier-row ${isCurrent ? 'current' : ''}">
+      <div class="tier-dot" style="background:${color};${isCurrent ? 'box-shadow:0 0 6px '+color : ''}"></div>
+      <span class="tier-name" style="color:${isCurrent ? color : ''}">${t.name}</span>
+      <span class="tier-rule">${t.rule}</span>
+      ${isCurrent ? '<span class="current-marker">THIS TAG</span>' : ''}
+    </div>`;
+  }).join('');
+  const tiersSectionHTML = category
+    ? ''
+    : `
+    <div class="tiers-section">
+      <div class="info-label">// All Tiers //</div>
+      <div class="tiers-grid">${tiersHTML}</div>
+    </div>
+  `;
+
+  // Build rules pills
+  const rulesHTML = category
+    ? [
+      `Category: ${category}`,
+      'Direct purchase flow',
+      'Price shared by seller'
+    ].map(r => `<span class="rule-pill">${r}</span>`).join('')
+    : cfg.rules.map(r => `<span class="rule-pill">${r}</span>`).join('');
+
+  page.innerHTML = `
+    <button class="back-btn" onclick="window.close(); setTimeout(()=>location.href='index.html',100)">Back to listings</button>
+
+    <div class="tag-card">
+      <span class="rarity-badge">${category || rarity}</span>
+      <div class="tag-title">${upper}</div>
+      <div class="tag-length">${metaLine}</div>
+      <button class="copy-btn" id="copyBtn" onclick="copyTag()">⧉ Copy Tag</button>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <span class="stat-val">${tag.length}</span>
+        <span class="stat-lbl">Length</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">${vowels}</span>
+        <span class="stat-lbl">Vowels</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">${uniqueChars}</span>
+        <span class="stat-lbl">Unique</span>
+      </div>
+    </div>
+
+    <div class="info-section">
+      <div class="info-label">// Classification //</div>
+      <div class="info-card">
+        <div class="info-card-title">${infoTitle}</div>
+        <div class="info-card-desc">${infoDesc}</div>
+        <div class="rules-list">${rulesHTML}</div>
+      </div>
+    </div>
+
+    ${tiersSectionHTML}
+  `;
+}
+
+function copyTag() {
+  const tag = new URLSearchParams(window.location.search).get('tag') || '';
+  const btn = document.getElementById('copyBtn');
+  const toast = document.getElementById('copy-toast');
+
+  navigator.clipboard.writeText(tag).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = tag;
+    ta.style.cssText = 'position:fixed;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+
+  btn.textContent = '✓ Copied!';
+  btn.classList.add('done');
+  setTimeout(() => { btn.textContent = '⧉ Copy Tag'; btn.classList.remove('done'); }, 1800);
+
+  toast.textContent = '✓ ' + tag.toUpperCase() + ' COPIED';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 1800);
+}
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3 Letter Gamertags - Private Inventory</title>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="private-inventory-page">
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html" aria-label="4L Tags Home">
+        <span class="nav-brand-mark"></span>
+        <span class="nav-brand-text">4L TAGS</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="nav-menu" id="nav-menu">
+        <a class="nav-link" href="index.html">Home</a>
+        <div class="nav-item">
+          <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+            Products
+            <span class="nav-caret"></span>
+          </button>
+          <div class="nav-dropdown">
+            <a href="index.html#market-categories">Marketplace</a>
+            <a href="3l-tags.html">3 Letter Tags</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <button class="nav-link nav-link-button" type="button" aria-expanded="false">
+            Documentation
+            <span class="nav-caret"></span>
+          </button>
+          <div class="nav-dropdown">
+            <a href="index.html#faq-anchor">FAQ</a>
+            <a href="index.html#how-it-works">Swap Process</a>
+          </div>
+        </div>
+        <a class="nav-cta" href="https://discord.com/users/820729520754524161" target="_blank" rel="noopener noreferrer">Community</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="cursor-light" aria-hidden="true"></div>
+
+  <main class="private-inventory-section">
+    <section class="private-inventory-card">
+      <div class="private-inventory-kicker">Private Inventory</div>
+      <h1 class="private-inventory-title">3 Letter Gamertags</h1>
+      <p class="private-inventory-text">
+        Extremely rare Xbox gamertags. Because of their rarity and value, these tags are not publicly listed.
+        Prices typically range from <strong>$300 - $1000+</strong> depending on the tag. Serious inquiries only.
+      </p>
+      <div class="private-inventory-actions">
+        <a class="contact-button" href="https://discord.com/users/820729520754524161" target="_blank" rel="noopener noreferrer">Contact Seller</a>
+      </div>
+      <div class="private-summary-grid">
+        <div class="private-summary-card">
+          <div class="private-summary-label">Average Price Range</div>
+          <div class="private-summary-value">$300 - $1000+</div>
+        </div>
+        <div class="private-summary-card">
+          <div class="private-summary-label">Availability</div>
+          <div class="private-summary-value">Private Inventory</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+    const navButtons = document.querySelectorAll('.nav-link-button');
+    const cursorLight = document.getElementById('cursor-light');
+
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', () => {
+        const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!expanded));
+        navMenu.classList.toggle('open');
+      });
+    }
+
+    navButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        if (window.innerWidth > 900) {
+          return;
+        }
+
+        const item = button.closest('.nav-item');
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        navButtons.forEach((other) => {
+          if (other !== button) {
+            other.setAttribute('aria-expanded', 'false');
+            other.closest('.nav-item')?.classList.remove('open');
+          }
+        });
+        button.setAttribute('aria-expanded', String(!expanded));
+        item?.classList.toggle('open');
+      });
+    });
+
+    document.addEventListener('mousemove', (e) => {
+      if (!cursorLight) {
+        return;
+      }
+
+      cursorLight.style.left = e.clientX + 'px';
+      cursorLight.style.top = e.clientY + 'px';
+    });
+  </script>
+</body>
+</html>
