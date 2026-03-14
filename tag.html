@@ -159,6 +159,7 @@ function render() {
   const params = new URLSearchParams(window.location.search);
   const tag = params.get('tag') || '';
   const category = params.get('category') || '';
+  const price = params.get('price') || '';
   const page = document.getElementById('page');
 
   if (!tag) {
@@ -217,6 +218,7 @@ function render() {
     <div class="tag-card">
       <span class="rarity-badge">${category || rarity}</span>
       <div class="tag-title">${upper}</div>
+      ${price ? `<div class="tag-price">£${price}</div>` : ''}
       <div class="tag-length">${metaLine}</div>
       <button class="copy-btn" id="copyBtn" onclick="copyTag()">⧉ Copy Tag</button>
     </div>

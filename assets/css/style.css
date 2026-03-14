@@ -1696,6 +1696,15 @@ footer span {
   margin-top: 12px;
 }
 
+.tag-price {
+  font-size: 28px;
+  font-weight: 700;
+  color: #00d4ff;
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+  text-shadow: 0 0 18px rgba(0, 212, 255, 0.35);
+}
+
 .copy-btn {
   margin-top: 24px;
   min-height: 52px;

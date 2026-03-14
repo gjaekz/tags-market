@@ -519,6 +519,11 @@ clearBtn.addEventListener('click', () => {
 });
 
 searchInput.addEventListener('input', () => {
+  // Secret discount easter egg
+  if (searchInput.value.replace(/\s/g, '') === '7727') {
+    window.location.href = 'secret-discount.html';
+    return;
+  }
   activeLetter = null;
   document.querySelectorAll('.letter-btn.active').forEach(b => b.classList.remove('active'));
   renderTags();
@@ -533,9 +538,6 @@ function highlight(text, query) {
 
 function renderTagMarkup(tag, query) {
   const content = highlight(tag, query);
-  if (tag.toLowerCase() === 'gqfy') {
-    return `<a href="secret-discount.html" class="tag-secret">${content}</a>`;
-  }
   return content;
 }
 
@@ -606,16 +608,7 @@ function renderTags() {
       item.className = 'tag-item';
       item.style.animationDelay = `${Math.min(i * 18, 400)}ms`;
       item.innerHTML = renderTagMarkup(tag, query);
-      if (tag.toLowerCase() === 'gqfy') {
-        item.addEventListener('click', () => {
-          window.location.href = 'secret-discount.html';
-        });
-        item.querySelector('.tag-secret')?.addEventListener('click', event => {
-          event.stopPropagation();
-        });
-      } else {
-        item.addEventListener('click', () => openTagPage(tag, item));
-      }
+      item.addEventListener('click', () => openTagPage(tag, item));
       tagGrid.appendChild(item);
     });
 
@@ -637,10 +630,6 @@ setTimeout(() => {
 
 // TAG DETAILS PAGE
 function openTagPage(tag, el) {
-  if (tag.toLowerCase() === 'gqfy') {
-    window.location.href = 'secret-discount.html';
-    return;
-  }
   // Brief visual flash then open
   el.classList.add('copied');
   el.innerHTML = '? ' + tag;
